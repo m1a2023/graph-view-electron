@@ -8,7 +8,10 @@ class _graph_data {
     this.nodes = nodesDataSet;
     this.edges = edgesDataSet;
   }
-
+  /**
+   *
+   * @returns {vis.DataSet}
+   */
   get() {
     return { nodes: this.nodes, edges: this.edges };
   }
@@ -22,7 +25,10 @@ class _graph_options {
   constructor(options) {
     this.options = options;
   }
-
+  /**
+   *
+   * @returns {vis.options}
+   */
   get() {
     return this.options;
   }
@@ -51,6 +57,10 @@ class GraphView {
     }
   }
 
+  /**
+   *
+   * @returns {vis.Network}
+   */
   get = () => {
     return new vis.Network(this.container, this.data, this.options);
   };

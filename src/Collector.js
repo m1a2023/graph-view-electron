@@ -1,14 +1,18 @@
 class Collector {
+  /**
+   *
+   * @param {string} from
+   * @returns value in element from page
+   */
   static collect(from) {
     return document.getElementById(from).value;
   }
-  static _parse() {
-    var nodesRaw = Collector.collect("graph-input-data");
-    var edgesRaw = Collector.collect("graph-edges-data");
-    return { nodesRaw, edgesRaw };
-  }
-
-  static get() {
-    return Collector._parse();
+  /**
+   *
+   * @param {string} from
+   * @returns element from page
+   */
+  static getElement(from) {
+    return document.getElementById(from);
   }
 }

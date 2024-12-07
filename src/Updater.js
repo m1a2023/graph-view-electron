@@ -1,0 +1,3 @@
+class Updater {
+  static load = () => {};
+}
