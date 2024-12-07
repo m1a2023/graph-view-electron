@@ -1,0 +1,25 @@
+{
+  "name": "electron-app",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "concurrently \"npm run watch:css\" \"electron .\"",
+    "build:css": "npx tailwindcss -i ./src/index.css -o ./src/assets/index_out.css",
+    "watch:css": "npx tailwindcss -i ./src/index.css -o ./src/assets/index_out.css --watch"
+  },
+  "author": "m1a2023",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "concurrently": "^9.1.0",
+    "electron": "^33.2.1",
+    "install": "^0.13.0",
+    "npm": "^10.9.2",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16"
+  },
+  "dependencies": {
+    "vis-network": "^9.1.9"
+  }
+}

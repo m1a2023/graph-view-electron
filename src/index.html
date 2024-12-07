@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="../src/assets/index_out.css" rel="stylesheet" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"
+      type="text/javascript"
+    ></script>
+    <title>Graph Viewer</title>
+  </head>
+
+  <body class="w-full min-h-screen flex">
+    <!-- First container (60% width) -->
+    <div class="flex flex-col w-[60%] min-h-screen p-2 gap-y-4">
+      <div class="flex-1 bg-slate-600 p-3 rounded-lg">
+        <div
+          class="flex flex-row justify-center w-full h-full p-3 overflow-hidden"
+        >
+          <!-- Form for Graph input raw data -->
+          <form
+            class="flex flex-col w-[45%] max-w-[50%] h-full overflow-hidden"
+          >
+            <label for="graph-input-data">Graph input data area</label>
+            <textarea
+              id="graph-input-data"
+              name="graph-input-area"
+              class="flex h-[80%] w-[35%] max-h-[100%] resize-none overflow-hidden rounded-lg"
+            ></textarea>
+          </form>
+
+          <!-- Form for Graph edges -->
+          <form
+            class="flex flex-col w-[45%] max-w-[50%] h-full overflow-hidden"
+          >
+            <label for="graph-edges-data">Graph edges data area</label>
+            <textarea
+              id="graph-edges-data"
+              name="graph-edges-area"
+              class="flex h-[80%] w-[35%] max-h-[100%] resize-none overflow-hidden rounded-lg"
+            ></textarea>
+          </form>
+        </div>
+      </div>
+
+      <!-- Form for graph view -->
+      <div class="flex-1 bg-slate-300 p-3 rounded-lg" id="network"></div>
+      <script src="./Graph.js"></script>
+    </div>
+
+    <!-- Second container (40% width) -->
+    <div class="flex w-[40%] min-h-screen p-2">
+      <div class="flex-1 bg-slate-400 p-3 rounded-lg">Third section</div>
+    </div>
+
+    <script src="./preload.js"></script>
+  </body>
+</html>
