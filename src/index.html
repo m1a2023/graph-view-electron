@@ -62,23 +62,29 @@
             </textarea>
           </form>
         </div>
-        <script src="./Parser.js"></script>
-        <script src="./Collector.js"></script>
       </div>
 
-      <!-- Form for graph view -->
+      <!-- Second container -->
       <div
-        class="flex-1 bg-slate-300 p-3 w-full h-[50%] max-h-[55%] rounded-lg"
+        class="flex-1 bg-slate-400 p-3 w-full h-[50%] max-h-[55%] rounded-lg"
+      >
+        Option section?
+      </div>
+    </div>
+
+    <!-- Form for graph view -->
+    <div class="flex w-[40%] max-h-screen p-2 overflow-hidden">
+      <div
         id="network"
+        class="flex-1 bg-slate-300 p-3 h-[100%] max-h-full overflow-auto rounded-lg"
       ></div>
-      <script src="./Graph.js"></script>
     </div>
 
-    <!-- Second container (40% width) -->
-    <div class="flex w-[40%] min-h-screen p-2">
-      <div class="flex-1 bg-slate-400 p-3 rounded-lg">Third section</div>
-    </div>
-
+    <script src="./UIUpdater.js"></script>
+    <script src="./GraphUIUpdater.js"></script>
+    <script src="./Graph.js"></script>
+    <script src="./Parser.js"></script>
+    <script src="./Collector.js"></script>
     <script src="./preload.js"></script>
   </body>
 </html>

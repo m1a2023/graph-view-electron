@@ -23,27 +23,29 @@ window.addEventListener("DOMContentLoaded", () => {
   let graph = new GraphView(data, options, _graph_container.__base_name);
   let network = graph.get();
 
-  rawData.addEventListener("dblclick", () => {
-    const nodes = Parser.parseNodes(Collector.collect("graph-input-data"));
-    const edges = Parser.parseEdges(Collector.collect("graph-edges-data"));
+  GraphUIUpdater.nodes(rawData, "dblclick", network);
+  GraphUIUpdater.edges(rawEdge, "dblclick", network);
+  // UIUpdater.load(rawData, "dblclick", () => {
+  //   const nodes = Parser.parseNodes(Collector.collect("graph-input-data"));
+  //   const edges = Parser.parseEdges(Collector.collect("graph-edges-data"));
 
-    network.setData({
-      nodes: new vis.DataSet(nodes),
-      edges: new vis.DataSet(edges),
-    });
+  //   network.setData({
+  //     nodes: new vis.DataSet(nodes),
+  //     edges: new vis.DataSet(edges),
+  //   });
 
-    console.log(nodes);
-    console.log(edges);
-  });
+  //   console.log(nodes);
+  //   console.log(edges);
+  // });
 
-  rawEdge.addEventListener("dblclick", () => {
-    const edges = Parser.parseEdges(Collector.collect("graph-edges-data"));
+  // UIUpdater.load(rawEdge, "dblclick", () => {
+  //   const edges = Parser.parseEdges(Collector.collect("graph-edges-data"));
 
-    network.setData({
-      nodes: network.body.data.nodes,
-      edges: new vis.DataSet(edges),
-    });
+  //   network.setData({
+  //     nodes: network.body.data.nodes,
+  //     edges: new vis.DataSet(edges),
+  //   });
 
-    console.log(edges);
-  });
+  //   console.log(edges);
+  // });
 });
