@@ -25,27 +25,4 @@ window.addEventListener("DOMContentLoaded", () => {
 
   GraphUIUpdater.nodes(rawData, "dblclick", network);
   GraphUIUpdater.edges(rawEdge, "dblclick", network);
-  // UIUpdater.load(rawData, "dblclick", () => {
-  //   const nodes = Parser.parseNodes(Collector.collect("graph-input-data"));
-  //   const edges = Parser.parseEdges(Collector.collect("graph-edges-data"));
-
-  //   network.setData({
-  //     nodes: new vis.DataSet(nodes),
-  //     edges: new vis.DataSet(edges),
-  //   });
-
-  //   console.log(nodes);
-  //   console.log(edges);
-  // });
-
-  // UIUpdater.load(rawEdge, "dblclick", () => {
-  //   const edges = Parser.parseEdges(Collector.collect("graph-edges-data"));
-
-  //   network.setData({
-  //     nodes: network.body.data.nodes,
-  //     edges: new vis.DataSet(edges),
-  //   });
-
-  //   console.log(edges);
-  // });
 });
