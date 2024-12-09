@@ -64,4 +64,20 @@ class GraphView {
   get = () => {
     return new vis.Network(this.container, this.data, this.options);
   };
+
+  /**
+   *
+   * @returns {vis.DataSet}
+   */
+  getData = () => {
+    return this.data;
+  };
+
+  /**
+   *
+   * @returns {vis.options}
+   */
+  getOptions = () => {
+    return this.options;
+  };
 }

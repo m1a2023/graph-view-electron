@@ -11,6 +11,7 @@ class Parser {
       .map((element, index) => ({
         id: index + 1,
         label: element.trim(),
+        value: 10,
       }));
 
     return nodes;
