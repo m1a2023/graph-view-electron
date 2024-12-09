@@ -15,13 +15,13 @@ window.addEventListener("DOMContentLoaded", () => {
       ])
     ),
     new _graph_options({
-      autoResize: false,
+      autoResize: true,
       nodes: {
         shape: "dot",
         size: 13,
         scaling: {
           min: 10,
-          max: 50,
+          max: 40,
         },
         borderWidth: 2,
         color: {
@@ -43,9 +43,6 @@ window.addEventListener("DOMContentLoaded", () => {
   GraphUIUpdater.updateNodes(nodes, "dblclick", network);
   GraphUIUpdater.updateEdges(edges, "dblclick", network);
 
-  /**
-   * change all values in nodes
-   */
   // GraphUIUpdater.changeEachValueIn(
   //   document.getElementById("graph-view-area"),
   //   "dblclick",
