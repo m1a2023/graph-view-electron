@@ -48,15 +48,24 @@ class GraphUIUpdater extends UIUpdater {
   static changeValueFor = (nodeId, value, network) => {
     network.body.data.nodes.update({
       id: nodeId,
-      value: value,
+      value: network.body.data.nodes.get(nodeId).value + value,
     });
   };
 
+  /**
+   * Changes each valie in network
+   *
+   * @param {HTMLElement} element
+   * @param {Event} event
+   * @param {any} value
+   * @param {Netowrk} network
+   * @param {Number} delay
+   */
   static changeEachValueIn = async (element, event, value, network, delay) => {
     GraphUIUpdater.update(element, event, async () => {
       const _nodes = network.body.data.nodes.get();
 
-      for (var node of _nodes) {
+      for (const node of _nodes) {
         GraphUIUpdater.changeValueFor(node.id, value, network);
 
         network.redraw();

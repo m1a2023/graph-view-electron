@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="select-none">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -22,10 +22,31 @@
       id="task-bar"
       class="fixed top-[-50px] left-0 w-full h-[50px] bg-gray-800 text-white flex justify-around items-center transition-all duration-300 z-50"
     >
-      <button class="px-4 py-2 bg-gray-700 hover:bg-gray-600">Task 1</button>
-      <button class="px-4 py-2 bg-gray-700 hover:bg-gray-600">Task 2</button>
-      <button class="px-4 py-2 bg-gray-700 hover:bg-gray-600">Task 3</button>
-      <button class="px-4 py-2 bg-gray-700 hover:bg-gray-600">Task 4</button>
+      <!-- Upload nodes from file -->
+      <div>
+        <input type="file" id="upload-nodes" class="hidden" />
+
+        <button
+          id="upload-nodes-button"
+          class="px-4 py-2 bg-gray-700 hover:bg-gray-600"
+        >
+          Upload nodes
+        </button>
+      </div>
+
+      <!-- Upload edges -->
+      <div>
+        <input type="file" id="upload-edges" class="hidden" />
+
+        <button
+          id="upload-edges-button"
+          class="px-4 py-2 bg-gray-700 hover:bg-gray-600"
+        >
+          Upload edges
+
+      </div>
+      <button class="px-4 py-2 bg-gray-700 hover:bg-gray-600">*empty*</button>
+      <button class="px-4 py-2 bg-gray-700 hover:bg-gray-600">Save</button>
     </div>
     <!-- First container (60% width) -->
     <div class="flex flex-col w-[50%] min-h-screen p-[1%] pr-[0.5%] gap-y-[2%]">
@@ -33,7 +54,7 @@
         class="flex bg-slate-600 h-[50%] max-h-[50%] resize-none rounded-2xl"
       >
         <div
-          class="grid grid-cols-2 flex flex-row justify-center w-full h-[100%] p-[4%] gap-x-[4%] overflow-hidden"
+          class="grid grid-cols-2 flex-row justify-center w-full h-[100%] p-[4%] gap-x-[4%] overflow-hidden"
         >
           <!-- Form for Graph input raw data -->
           <div
@@ -73,8 +94,8 @@
               for="graph-edges-data"
               class="text-lg font-semibold mb-2 text-center"
             >
-              Graph input data area</label
-            >
+              Graph input data area
+            </label>
             <textarea
               id="graph-edges-data"
               name="graph-edges-area"
@@ -89,6 +110,7 @@
             >
             <button
               type="button"
+              id="button"
               class="mt-3 px-4 py-2 bg-green-500 text-blue-500 rounded hover:bg-green-400"
             >
               Update
@@ -104,25 +126,31 @@
         <h2 class="text-lg text-center font-bold mb-2">Option Section</h2>
         <div class="grid gap-4 grid-cols-2">
           <button
+            id="bfs-button"
             class="px-4 py-2 bg-blue-500 text-white rounded-2xl hover:bg-blue-400"
           >
-            Button
+            BFS
           </button>
           <button
+            id="dfs-button"
             class="px-4 py-2 bg-blue-500 text-white rounded-2xl hover:bg-blue-400"
           >
-            Button
+            DFS
+          </button>
+          <button 
+            id="max-flow-button"
+            class="px-4 py-2 bg-blue-500 text-white rounded-2xl hover:bg-blue-400"
+          >
+            Max flow
           </button>
           <button
+            id="spaning-tree-button"
             class="px-4 py-2 bg-blue-500 text-white rounded-2xl hover:bg-blue-400"
           >
-            Button
+            Spaning Tree
           </button>
-          <button
-            class="px-4 py-2 bg-blue-500 text-white rounded-2xl hover:bg-blue-400"
-          >
-            Button
-          </button>
+
+          <p id="max-flow-result"> </p>
         </div>
       </div>
     </div>
@@ -139,12 +167,16 @@
     </div>
 
     <!-- There are scripts -->
-    <script src="./UIUpdater.js"></script>
-    <script src="./GraphUIUpdater.js"></script>
-    <script src="./Graph.js"></script>
+    <script src="./Reader.js"></script>
     <script src="./Parser.js"></script>
+    <script src="./UIUpdater.js"></script>
+    <script src="./Graph.js"></script>
+    <script src="./GeneralGraph.js"></script>
+    <script src="./GraphUIUpdater.js"></script>
+    <script src="./GeneralGraphUpdater.js"></script>
     <script src="./Collector.js"></script>
     <script src="./preload.js"></script>
+
     <script>
       // Show task bar when mouse is near the top of the screen
       document.addEventListener("mousemove", function (event) {

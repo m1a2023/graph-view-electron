@@ -6,3 +6,8 @@ node_modules/
 src/assets/
 src/assets
 /src/assets
+
+./.idea
+/.idea
+.idea/
+/.idea/

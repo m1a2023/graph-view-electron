@@ -5,9 +5,9 @@ class UIUpdater {
    *
    * @param {HTMLElement} element
    * @param {Event} event
-   * @param {Function} func
-   * @returns nothing
+   * @param {Function} callback
+   * @returns void
    */
-  static update = (element, event, func) =>
-    element.addEventListener(event, func);
+  static update = (element, event, callback) =>
+    element.addEventListener(event, callback);
 }

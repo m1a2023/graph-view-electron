@@ -1,8 +1,5 @@
 class Parser {
-  static parse = () => {
-    var nodes = [];
-    var edges = [];
-  };
+  static parse = () => {};
 
   static parseNodes = (nodesRaw) => {
     const nodes = nodesRaw
@@ -14,6 +11,8 @@ class Parser {
         value: 10,
       }));
 
+    console.log("Parsed nodes: ");
+    console.log(nodes);
     return nodes;
   };
 
@@ -23,9 +22,23 @@ class Parser {
       .filter((line) => line.trim() != "")
       .map((line) => {
         const [from, to] = line.trim().split(/\s+/).map(Number);
-        return { from, to };
+        return { from, to, capacity: 1 };
       });
 
+    console.log("Parsed edges: ");
+    console.log(edges);
     return edges;
+  };
+
+  static parseToMap = (edgesRaw) => {
+    const generalGraph = new GeneralGraph(new Map());
+
+    edgesRaw.forEach(({ from, to }) => {
+      generalGraph.add(from, to);
+    });
+
+    console.log("Parsed graph as Map: ");
+    console.log(generalGraph.get());
+    return generalGraph.get();
   };
 }
