@@ -53,29 +53,25 @@ class GraphView {
   constructor(
     graphData,
     graphOptions,
-    graphContainerName = _graph_container.__base_name
+    graphContainerName = _graph_container.__default_name
   ) {
     this.container = document.getElementById(graphContainerName);
     this.data = graphData.get();
     this.options = graphOptions.get();
 
     if (!this.container) {
-      throw new Error(
-        "Container with id '${graphContainer.__base_name}' not found"
-      );
+      throw new Error(`Container with id '${this.container.id}' not found`);
     }
-  }
 
-  update = (data) => {
-    this.network.setData(data);
-  };
+    this.network = new vis.Network(this.container, this.data, this.options);
+  }
 
   /**
    *
    * @returns {vis.Network}
    */
   get = () => {
-    return new vis.Network(this.container, this.data, this.options);
+    return this.network;
   };
 
   /**

@@ -2,37 +2,77 @@ class GraphUIUpdater extends UIUpdater {
   /**
    * Method for updating graph nodes and edges in UI
    *
-   * @param {HTMLElement} element
-   * @param {Event} event
-   * @param {Network} network
+   * @param {HTMLElement} nodesArea - Input element for nodes
+   * @param {HTMLElement} edgesArea - Input element for edges
+   * @param {HTMLElement} buttonUpdater - Button to trigger update
+   * @param {string} event - Event type (e.g., 'click')
+   * @param {__graph} graph - GraphView or FlowGraph
    */
-  static updateNodes = (element, event, network) => {
-    super.update(element, event, () => {
-      const nodes = Parser.parseNodes(Collector.collect("graph-input-data"));
-      const edges = Parser.parseEdges(Collector.collect("graph-edges-data"));
+  static updateNodes = (nodesArea, edgesArea, buttonUpdater, event, graph) => {
+    if (!nodesArea || !edgesArea || !buttonUpdater || !event || !graph) {
+      throw new Error("Argument error. Check given arguments;\n");
+    }
 
-      network.setData({
+    console.log("join in updateNodes;");
+
+    /** updating depends on type of graph representation: GraphView or FlowGraph */
+    super.update(buttonUpdater, event, () => {
+      /** general variables declaration */
+      let nodes, edges;
+
+      /** main difference between flow and graph */
+      if (graph instanceof GraphView) {
+        /** default parsing if it is GraphView */
+        edges = Parser.parseEdges(Collector.collect(edgesArea.id));
+        console.log("GraphView was triggered;");
+      } else if (graph instanceof FlowView) {
+        /** parsing if it is FlowView */
+        edges = Parser.parseFlowEdges(Collector.collect(edgesArea.id));
+        console.log("FlowGraph was triggered;");
+      }
+
+      /** nodes are always general */
+      nodes = Parser.parseNodes(Collector.collect(nodesArea.id));
+
+      graph.network.setData({
         nodes: new vis.DataSet(nodes),
         edges: new vis.DataSet(edges),
       });
-
-      console.log(nodes);
     });
   };
 
   /**
    * Method for updating edges for graph in UI
    *
-   * @param {HTMLElement} element
-   * @param {Event} event
-   * @param {Network} network
+   * @param {HTMLElement} edgesArea - Input element for edges
+   * @param {HTMLElement} buttonUpdater - Button to trigger update
+   * @param {String} event - Event type (e.g., 'click')
+   * @param {__graph} graph - Vis.js network instance
    */
-  static updateEdges = (element, event, network) => {
-    super.update(element, event, () => {
-      const edges = Parser.parseEdges(Collector.collect("graph-edges-data"));
+  static updateEdges = (edgesArea, buttonUpdater, event, graph) => {
+    if (!edgesArea || !buttonUpdater || !event || !graph) {
+      throw new Error("Argument error. Check given arguments;\n");
+    }
 
-      network.setData({
-        nodes: network.body.data.nodes,
+    console.log("join in updateEdges;");
+
+    super.update(buttonUpdater, event, () => {
+      /** general variable declaration */
+      let edges;
+
+      /** main difference between flow and graph */
+      if (graph instanceof GraphView) {
+        /** default parsing if it is GraphView */
+        edges = Parser.parseEdges(Collector.collect(edgesArea.id));
+        console.log("GraphView was triggered;");
+      } else if (graph instanceof FlowView) {
+        /** parsing if it is FlowView */
+        edges = Parser.parseFlowEdges(Collector.collect(edgesArea.id));
+        console.log("FlowGraph was triggered;");
+      }
+
+      graph.network.setData({
+        nodes: graph.network.body.data.nodes,
         edges: new vis.DataSet(edges),
       });
     });

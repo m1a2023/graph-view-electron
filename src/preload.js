@@ -1,43 +1,46 @@
 window.addEventListener("DOMContentLoaded", () => {
-  /**
-   * these values is used to update graph
-   */
+  /** these values is used to update graph */
   let nodes = document.getElementById("graph-input-data");
+  /** these values is used to update graph */
   let edges = document.getElementById("graph-edges-data");
+  /** button for updating nodes in graph */
+  let nodesUpdateButton = document.getElementById("update-nodes-button");
+  /** button for updating edges in graph */
+  let edgesUpdateButton = document.getElementById("update-edges-button");
 
-  /**
-   * graph view
-   */
-  const graph = new GraphView(
-    _graph_container.__default_graph_data,
-    _graph_container.__default_graph_options,
-    _graph_container.__default_name
+  /** graph view */
+  // let graph = new GraphView(
+  //   _graph_container.__default_graph_data,
+  //   _graph_container.__default_graph_options
+  // );
+
+  /** graph flow */
+  let graph = new FlowView(
+    _flow_container.__default_flow_data,
+    _flow_container.__default_flow_options
   );
 
-  let network = graph.get();
+  // console.log(graph.data);
+  /** updating graph nodes */
+  GraphUIUpdater.updateNodes(nodes, edges, nodesUpdateButton, "click", graph);
+  /** updating graph edges */
+  GraphUIUpdater.updateEdges(edges, edgesUpdateButton, "click", graph);
 
-  /**
-   * updating graph
-   */
-  GraphUIUpdater.updateNodes(nodes, "dblclick", network);
-  GraphUIUpdater.updateEdges(edges, "dblclick", network);
-
+  /** bfs function */
   document.getElementById("bfs-button").addEventListener("click", () => {
     const startNodeId = 1;
-    bfs(startNodeId, network);
+    bfs(startNodeId, graph.get());
   });
 
+  /** dfs function */
   document.getElementById("dfs-button").addEventListener("click", () => {
     const startNodeId = 1;
-    startDFS(startNodeId, network);
+    startDFS(startNodeId, graph.get());
   });
 
-  document.getElementById("max-flow-button").addEventListener("click", () => {
-    const sourceNode = 1; // Define your source node here
-    const sinkNode = 5; // Define your sink node here
-    const maxFlow = GraphFlow.findMaxFlow(sourceNode, sinkNode, network);
-    alert(`Maximum Flow: ${maxFlow}`);
-  });
+  document
+    .getElementById("max-flow-button")
+    .addEventListener("click", async () => {});
 });
 
 const bfs = async (startNodeId, network) => {
