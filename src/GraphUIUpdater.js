@@ -21,7 +21,7 @@ class GraphUIUpdater extends UIUpdater {
       let nodes, edges;
 
       /** main difference between flow and graph */
-      if (graph instanceof GraphView) {
+      if (graph instanceof GraphView || graph instanceof SpaningTree) {
         /** default parsing if it is GraphView */
         edges = Parser.parseEdges(Collector.collect(edgesArea.id));
         console.log("GraphView was triggered;");
@@ -31,8 +31,12 @@ class GraphUIUpdater extends UIUpdater {
         console.log("FlowGraph was triggered;");
       }
 
-      /** nodes are always general */
-      nodes = Parser.parseNodes(Collector.collect(nodesArea.id));
+      if (graph instanceof SpaningTree) {
+        nodes = Parser.parseSpaningNodes(Collector.collect(edgesArea.id));
+        console.log("SpaningTree was triggered;");
+      } else {
+        nodes = Parser.parseNodes(Collector.collect(nodesArea.id));
+      }
 
       graph.network.setData({
         nodes: new vis.DataSet(nodes),

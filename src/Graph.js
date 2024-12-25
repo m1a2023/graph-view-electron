@@ -132,7 +132,7 @@ let _graph_container = {
         border: "#3B1C32",
         highlight: {
           border: "#A64D79",
-          background: "#D2E5FF",
+          background: "#FFFFFF",
         },
       },
     },

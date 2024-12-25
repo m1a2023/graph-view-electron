@@ -18,6 +18,7 @@
   </head>
 
   <body class="w-full min-h-screen flex">
+    <!-- Taskbar -->
     <div
       id="task-bar"
       class="fixed top-[-50px] left-0 w-full h-[50px] bg-gray-800 text-white flex justify-around items-center transition-all duration-300 z-50"
@@ -44,12 +45,12 @@
         </button>
       </div>
   
-      <button class="px-4 py-2 bg-gray-700 hover:bg-gray-600">*empty*</button>
+      <button class="px-4 py-2 bg-gray-700 hover:bg-gray-600">Empty</button>
       <button class="px-4 py-2 bg-gray-700 hover:bg-gray-600">Save</button>
     </div>
   
     <!-- First container (50% width) -->
-    <div class="flex flex-col w-[50%] min-h-screen p-[1%] pr-[0.5%] gap-y-[2%]">
+    <div class="flex flex-col w-[40%] min-h-screen p-[1%] pr-[0.5%] gap-y-[2%]">
       <div
         class="flex bg-slate-600 h-[50%] max-h-[50%] resize-none rounded-2xl"
       >
@@ -64,7 +65,7 @@
               for="graph-input-data"
               class="text-lg font-semibold mb-2 text-center"
             >
-              Graph input data area
+              Nodes
             </label>
             <textarea
               id="graph-input-data"
@@ -94,7 +95,7 @@
               for="graph-edges-data"
               class="text-lg font-semibold mb-2 text-center"
             >
-              Graph input data area
+              Edges
             </label>
             <textarea
               id="graph-edges-data"
@@ -141,12 +142,6 @@
             >
               DFS
             </button>
-            <button
-              id="min-path-button"
-              class="block w-full px-4 py-2 text-left hover:bg-gray-100"
-            >
-              Search Min Path
-            </button>
           </div>
         </div>
   
@@ -163,7 +158,13 @@
               id="max-flow-button"
               class="block w-full px-4 py-2 text-left hover:bg-gray-100"
             >
-              Search Maximum Flow
+              Search maximum flow
+            </button>
+            <button
+              id="min-path-button"
+              class="block w-full px-4 py-2 text-left hover:bg-gray-100"
+            >
+              Search minimum path
             </button>
           </div>
         </div>
@@ -186,12 +187,15 @@
           </div>
         </div>
 
-        <textarea
-        id="graph-system-info"
-        class="block w-full px-4 py-2 mt-2 border border-gray-300 grow-1 rounded-2xl resize-none bg-gray-200 text-gray-600 cursor-not-allowed"
-        readonly
-        placeholder="System information will appear here..."
-      ></textarea>
+        <div class="flex grow-1 ">
+          <textarea
+            id="graph-system-info"
+            class="block w-full px-4 py-2 mt-2 border  border-gray-300 grow-1 rounded-2xl resize bg-gray-200 text-gray-600 cursor-not-allowed"
+            readonly
+            placeholder="System information will appear here..."
+          ></textarea>
+
+        </div>
 
       </div>
     </div>
@@ -199,11 +203,11 @@
     <!-- Third container with graph view -->
     <div
       id="graph-view-area"
-      class="flex w-[55%] max-h-screen pl-[0.5%] p-[1%] overflow-hidden"
+      class="flex w-[60%] max-h-screen pl-[0.5%] p-[1%] overflow-hidden"
     >
       <div
         id="network"
-        class="flex-1 bg-slate-300 p-3 h-[100%] max-h-full overflow-auto rounded-2xl"
+        class="flex-1 bg-pink-10 p-3 h-[100%] max-h-full overflow-auto rounded-2xl"
       ></div>
     </div>
   
@@ -225,6 +229,7 @@
     <script src="./GeneralGraphUpdater.js"></script>
     <script src="./Collector.js"></script>
     <script src="./FlowGraph.js"></script>
+    <script src="./SpaningTree.js"></script>
     <script src="./preload.js"></script>
 
     <script>

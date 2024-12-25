@@ -1,19 +1,19 @@
-let _flow_container = {
+let _span_container = {
   __default_name: "network",
   __default_flow_data: new _graph_data(
     new vis.DataSet([
-      { id: 1, label: "1" },
-      { id: 2, label: "2" },
-      { id: 3, label: "3" },
-      { id: 4, label: "4" },
-      { id: 5, label: "5" },
+      { id: 1, label: "1", value: 31 },
+      { id: 2, label: "2", value: 5 },
+      { id: 3, label: "3", value: 19 },
+      { id: 4, label: "4", value: 31 },
+      { id: 5, label: "5", value: 11 },
     ]),
     new vis.DataSet([
-      { from: 1, to: 2, value: 10 },
-      { from: 2, to: 3, value: 5 },
-      { from: 3, to: 2, value: 50 },
-      { from: 3, to: 4, value: 20 },
-      { from: 4, to: 5, value: 19 },
+      { from: 1, to: 2 },
+      { from: 2, to: 3 },
+      { from: 3, to: 2 },
+      { from: 3, to: 4 },
+      { from: 4, to: 5 },
     ])
   ),
   __default_flow_options: new _graph_options({
@@ -42,21 +42,17 @@ let _flow_container = {
   }),
 };
 
-class FlowView {
-  constructor(
-    data,
-    options,
-    flowContainerName = _flow_container.__default_name
-  ) {
-    this.data = data.get();
-    this.options = options.get();
-    this.container = document.getElementById(flowContainerName);
+class SpaningTree {
+  constructor(data, options, container = _span_container.__default_name) {
+    this.data = data;
+    this.options = options;
+    this.container = container;
 
     if (!this.container) {
-      throw new Error(`Container with id '${this.container.id}' not found`);
+      throw new Error(`Container with id ${this.container.id} not found.`);
     }
 
-    this.network = new vis.Network(this.container, this.data, this.options);
+    this.network = new vis.network(this.container, this.data, this.options);
   }
 
   get = () => {
